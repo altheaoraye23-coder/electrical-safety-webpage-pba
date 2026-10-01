@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrical Safety: Stay Safe, Stay Aware</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f7fb;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+header {
+  background: #123b63;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+section {
+  background: white;
+  margin: 18px 0;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h2 {
+  color: #123b63;
+}
+
+li {
+  margin: 8px 0;
+}
+
+.quiz button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #ccd5df;
+  border-radius: 10px;
+  background: #eef3f8;
+  cursor: pointer;
+}
+
+.quiz button:hover {
+  background: #dce8f3;
+}
+
+#result {
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+#score {
+  font-weight: bold;
+}
+
+#nextButton {
+  background: #123b63;
+  color: white;
+  border: none;
+}
+
+#nextButton:hover {
+  background: #0d2d4d;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Electrical Safety: Stay Safe, Stay Aware</h1>
+  <p>Learning simple safety practices can help prevent accidents and equipment damage.</p>
+</header>
+
+<main>
+
+<section>
+  <h2>Focus Problem</h2>
+  <p>
+    Some students are not fully aware of proper electrical and occupational
+    safety practices. This may lead to unsafe actions when using electrical
+    equipment and tools.
+  </p>
+</section>
+
+<section>
+  <h2>Why Does Electrical Safety Matter?</h2>
+  <p>
+    Knowing and following safety practices helps prevent accidents, injuries,
+    and equipment damage. It also promotes responsible and careful use of
+    electrical equipment.
+  </p>
+</section>
+
+<section>
+  <h2>Who Is Affected?</h2>
+  <ul>
+    <li>Students</li>
+    <li>Teachers</li>
+    <li>School staff</li>
+    <li>People who work with electrical equipment and tools</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Target Audience</h2>
+  <ul>
+    <li><strong>Age:</strong> 13–18 years old</li>
+    <li><strong>Interests:</strong> Technology, electrical equipment, hands-on activities, safety, and practical skills</li>
+    <li><strong>Needs:</strong> Simple information about electrical hazards, equipment handling, and basic occupational safety</li>
+    <li><strong>Background:</strong> Junior and senior high school students learning technology, electrical, technical-vocational, or practical subjects</li>
+  </ul>
+</section>
+
+<section>
+  <h2>YouTube Content Category</h2>
+  <p><strong>Educational / How-To</strong></p>
+  <p>
+    This category fits the topic because demonstrations, examples, and simple
+    explanations can help students understand and apply electrical and
+    occupational safety practices.
+  </p>
+</section>
+
+<section>
+  <h2>Basic Electrical Safety Tips</h2>
+  <ul>
+    <li>Keep electrical equipment and cords away from water.</li>
+    <li>Do not touch electrical equipment with wet hands.</li>
+    <li>Check cords and plugs for visible damage before use.</li>
+    <li>Use equipment only as instructed.</li>
+    <li>Do not overload electrical outlets.</li>
+    <li>Ask a teacher or trained adult for help when unsure.</li>
+  </ul>
+</section>
+
+<section class="quiz">
+  <h2>Test Your Safety Knowledge</h2>
+
+  <p><strong id="question"></strong></p>
+
+  <div id="choices"></div>
+
+  <p id="result"></p>
+  <p id="score"></p>
+
+  <button id="nextButton" onclick="nextQuestion()" style="display:none;">
+    Next Question
+  </button>
+</section>
+
+</main>
+
+<footer>
+  <p>Electrical & Occupational Safety Awareness</p>
+</footer>
+
+<script>
+
+const questions = [
+  {
+    question: "What should you do before using an electrical tool?",
+    choices: [
+      "Use it immediately without checking.",
+      "Check the equipment and follow safety instructions.",
+      "Use it even if the cord is damaged."
+    ],
+    answer: 1
+  },
+
+  {
+    question: "What should you do before touching electrical equipment?",
+    choices: [
+      "Make sure your hands are dry.",
+      "Wet your hands first.",
+      "Touch it even if your hands are wet."
+    ],
+    answer: 0
+  },
+
+  {
+    question: "What should you do if an electrical cord is damaged?",
+    choices: [
+      "Continue using it carefully.",
+      "Cover it with paper.",
+      "Do not use it and ask a teacher or trained adult for help."
+    ],
+    answer: 2
+  },
+
+  {
+    question: "Why should you avoid overloading electrical outlets?",
+    choices: [
+      "It can create a safety hazard.",
+      "It makes devices work faster.",
+      "It makes the outlet look messy."
+    ],
+    answer: 0
+  },
+
+  {
+    question: "Who should you ask for help if you are unsure about using electrical equipment?",
+    choices: [
+      "A teacher or trained adult.",
+      "Anyone nearby.",
+      "No one."
+    ],
+    answer: 0
+  }
+];
+
+let currentQuestion = 0;
+let points = 0;
+let answered = false;
+
+function showQuestion() {
+
+  const question = document.getElementById("question");
+  const choices = document.getElementById("choices");
+  const result = document.getElementById("result");
+  const score = document.getElementById("score");
+  const nextButton = document.getElementById("nextButton");
+
+  question.textContent =
+    (currentQuestion + 1) + ". " + questions[currentQuestion].question;
+
+  choices.innerHTML = "";
+  result.textContent = "";
+  score.textContent = "Score: " + points + "/" + questions.length;
+
+  nextButton.style.display = "none";
+
+  answered = false;
+
+  questions[currentQuestion].choices.forEach((choice, index) => {
+
+    const button = document.createElement("button");
+
+    button.textContent = choice;
+
+    button.onclick = function() {
+      checkAnswer(index);
+    };
+
+    choices.appendChild(button);
+  });
+}
+
+function checkAnswer(selected) {
+
+  if (answered) {
+    return;
+  }
+
+  answered = true;
+
+  const result = document.getElementById("result");
+  const score = document.getElementById("score");
+  const nextButton = document.getElementById("nextButton");
+
+  if (selected === questions[currentQuestion].answer) {
+
+    points++;
+
+    result.textContent =
+      "Correct! Great job.";
+
+  } else {
+
+    result.textContent =
+      "Not quite. Review the safety practices above.";
+  }
+
+  score.textContent =
+    "Score: " + points + "/" + questions.length;
+
+  if (currentQuestion < questions.length - 1) {
+
+    nextButton.style.display = "block";
+
+  } else {
+
+    result.textContent += " You completed the quiz!";
+  }
+}
+
+function nextQuestion() {
+
+  currentQuestion++;
+
+  showQuestion();
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
